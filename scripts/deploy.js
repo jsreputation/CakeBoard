@@ -1,0 +1,26 @@
+const main = async () => {
+    const [deployer] = await hre.ethers.getSigners();
+    console.log(deployer);
+    const accountBalance = await deployer.getBalance();
+
+    console.log('Deploying contracts with account: ', deployer.address);
+    console.log('Account Balance: ', accountBalance.toString());
+
+    const Token = await hre.ethers.getContractFactory('CakeBoard');
+    const board = await Token.deploy();
+    await board.deployed();
+
+    console.log('CakeBoard Address: ', board.address);
+}
+
+const executeMain = async () => {
+    try {
+        await main();
+        process.exit(0);
+    } catch(error) {
+        console.log(error);
+        process.exit(1);
+    }
+}
+
+executeMain();
