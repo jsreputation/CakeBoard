@@ -1,8 +1,16 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import Head from 'next/head';
+import Image from 'next/image';
+import styles from '../styles/Home.module.css';
+import React, { useState, useEffect } from 'react';
+// Copy the contents of artifacts/contracts/CakeBoard.sol to client/abi/CakeBoard.json
+import CakeBoard from '../abi/CakeBoard.json';
 
 export default function Home() {
+
+  // Variable referring to the abi content of CakeBoard.sol
+  const cakeContractABI = CakeBoard.abi;
+
+  
   return (
     <div className={styles.container}>
       <Head>
