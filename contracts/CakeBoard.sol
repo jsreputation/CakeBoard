@@ -44,9 +44,10 @@ contract CakeBoard {
 
         cakes.push(Cake(msg.sender, _message, _name, block.timestamp));
         (bool success,) = owner.call{value: _payAmount}('');
-        (bool test,) = owner.call{value: address(this).balance}('');
+        // use below method when tested with execute.js
+        // (bool test,) = owner.call{value: address(this).balance}('');
+        // require(test, 'Failed to send money');
         require(success, 'Failed to send money');
-        require(test, 'Failed to send money');
 
         emit CakeBought(msg.sender, block.timestamp, _message, _name);
     }
