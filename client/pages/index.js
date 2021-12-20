@@ -10,7 +10,18 @@ export default function Home() {
   // Variable referring to the abi content of CakeBoard.sol
   const cakeContractABI = CakeBoard.abi;
 
+  const [liveAccount, setLiveAccount] = useState();
   
+  const [message, setMessage] = useState();
+
+  const [name, setName] = useState();
+
+  const [allCakes, setAllCakes] = useState();
+
+
+  const connectWallet = async () => {
+    
+  }
   return (
     <div className={styles.container}>
       <Head>
