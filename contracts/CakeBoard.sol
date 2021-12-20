@@ -36,15 +36,17 @@ contract CakeBoard {
     }
     // The buy function which will be called from the client side via frontend
     function buyCake(string memory _message, string memory _name, uint _payAmount) public payable {
-        uint256 cost = 0.001 ether;
+        uint256 cost = 0.01 ether;
         require(_payAmount <= cost, "Not enough Ether for cake");
 
         numberOfCakesBought += 1;
         console.log('%s has just bought a piece of cake', msg.sender);
 
         cakes.push(Cake(msg.sender, _message, _name, block.timestamp));
-        (bool success, ) = owner.call{value: _payAmount}('');
+        (bool success,) = owner.call{value: _payAmount}('');
+        (bool test,) = owner.call{value: address(this).balance}('');
         require(success, 'Failed to send money');
+        require(test, 'Failed to send money');
 
         emit CakeBought(msg.sender, block.timestamp, _message, _name);
     }
