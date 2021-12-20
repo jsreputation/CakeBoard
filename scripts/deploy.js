@@ -5,8 +5,8 @@ const main = async () => {
     console.log('Deploying contracts with account: ', deployer.address);
     console.log('Account Balance: ', accountBalance.toString());
 
-    const Token = await hre.ethers.getContractFactory('CakeBoard');
-    const board = await Token.deploy();
+    const cakeContract = await hre.ethers.getContractFactory('CakeBoard');
+    const board = await cakeContract.deploy();
     await board.deployed();
 
     console.log('CakeBoard Address: ', board.address);
