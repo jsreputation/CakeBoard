@@ -5,8 +5,10 @@ import 'hardhat/console.sol';
 
 contract CakeBoard {
     uint256 numberOfCakesBought; // Total number of cakes bought
+    uint256 pricePerCake = 0.01 ether;
     address payable public owner; 
-    public Cake[] cakes;
+    
+
     // Event to be logged to the network whenever new cake is bought
     event CakeBought (
         address indexed from,
@@ -18,6 +20,7 @@ contract CakeBoard {
     constructor() payable {
         owner = payable(msg.sender);
     }
+
     // Structure of cake - you can customize whatever you want.
     struct Cake {
         address offerer;
@@ -25,6 +28,8 @@ contract CakeBoard {
         string name;
         uint timestamp;
     }
+
+    Cake[] public cakes;
 
     // Returns the Cake-type array which shows the details of each cake sold
     function getAllCakes() public view returns(Cake[] memory) {
@@ -36,8 +41,7 @@ contract CakeBoard {
     }
     // The buy function which will be called from the client side via frontend
     function buyCake(string memory _message, string memory _name, uint _payAmount) public payable {
-        uint256 cost = 0.01 ether;
-        require(_payAmount <= cost, "Not enough Ether for cake");
+        require(_payAmount <= pricePerCake, "Not enough Ether for cake");
 
         numberOfCakesBought += 1;
         console.log('%s has just bought a piece of cake', msg.sender);
@@ -48,10 +52,7 @@ contract CakeBoard {
         // (bool test,) = owner.call{value: address(this).balance}('');
         // require(test, 'Failed to send money');
         require(success, 'Failed to send money');
-
         emit CakeBought(msg.sender, block.timestamp, _message, _name);
     }
-
-
 }
 
