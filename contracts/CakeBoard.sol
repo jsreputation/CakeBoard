@@ -6,6 +6,7 @@ import 'hardhat/console.sol';
 contract CakeBoard {
     uint256 numberOfCakesBought; // Total number of cakes bought
     address payable public owner; 
+    public Cake[] cakes;
     // Event to be logged to the network whenever new cake is bought
     event CakeBought (
         address indexed from,
@@ -25,7 +26,6 @@ contract CakeBoard {
         uint timestamp;
     }
 
-    Cake[] cakes;
     // Returns the Cake-type array which shows the details of each cake sold
     function getAllCakes() public view returns(Cake[] memory) {
         return cakes;

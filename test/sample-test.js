@@ -1,11 +1,11 @@
 const { expect } = require("chai");
 const { ethers } = require("hardhat");
 
-describe("Greeter", function () {
+describe("Token Contract", function () {
   it("Should return the new greeting once it's changed", async function () {
-    const Greeter = await ethers.getContractFactory("Greeter");
-    const greeter = await Greeter.deploy("Hello, world!");
-    await greeter.deployed();
+    const cakeContractFactory = await ethers.getContractFactory("CakeBoard");
+    const cakeContract = await cakeContractFactory.deploy();
+    await cakeContract.deployed();
 
     expect(await greeter.greet()).to.equal("Hello, world!");
 
