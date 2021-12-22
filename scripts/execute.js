@@ -12,15 +12,15 @@ const main = async () => {
     let contractBalance = await hre.ethers.provider.getBalance(cakeContract.address);
     console.log('Contract Balance: ', hre.ethers.utils.formatEther(contractBalance))
     // Occur the transaction by calling buyCake method in CakeBoard.sol
-    const cakeTxn = await cakeContract.buyCake('This is No 1 Cake', 'Alice', ethers.utils.parseEther('0.01'));
+    const cakeTxn = await cakeContract.buyCake(
+        'This is No 1 Cake', 'Alice', ethers.utils.parseEther('0.01')
+    );
     await cakeTxn.wait();
     // Get buyer contract balance after transaction which would be 0.09
     contractBalance = await hre.ethers.provider.getBalance(
         cakeContract.address
     );
-    console.log("Contract Balance after transaction:",
-        hre.ethers.utils.formatEther(contractBalance)
-    );
+    console.log("Contract Balance after transaction:", hre.ethers.utils.formatEther(contractBalance));
     // Get the list of cakes sold
     let allCakes = await cakeContract.getAllCakes();
     console.log(allCakes);
