@@ -7,10 +7,9 @@ import { connectWallet, checkWalletConnection } from '../services/connectWallet'
 export default function Home() {
 
   useEffect(() => {
-    checkWalletConnection();
+    connectWallet();
   }, []);
 
-  checkWalletConnection();
 
   const [liveAccount, setLiveAccount] = useState();
   
