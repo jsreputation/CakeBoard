@@ -7,6 +7,4 @@ export const buyCake = async () => {
         CakeBoardAbi.abi,
         process.env.TEST_CONTRACT_ADDRESS    
     );
-        
-    
 }
