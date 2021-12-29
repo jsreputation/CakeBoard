@@ -8,15 +8,15 @@ let options = {
 }
 
 export const successAlert = async() => {
-    alert('success');
+    toast.success('Wallet Connected Successfully', options);
 }
 
 export const warnAlert = async() => {
-    alert('warning');
+    toast.error('Please confirm you have wallet connected', options)
 }
 
-export const errorAlert = async() => {
-    alert('error');
+export const errorAlert = async(error) => {
+    toast.error(error.message, options)
 }
 
 

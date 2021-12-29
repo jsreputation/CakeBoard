@@ -1,35 +1,19 @@
 import Head from 'next/head';
-import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 import React, { useState, useEffect } from 'react';
 import { connectWallet, checkWalletConnection } from '../services/connectWallet';
-
+import { buyCake, getCakes } from '../services/contract';
 export default function Home() {
 
   useEffect(() => {
-    connectWallet();
+    checkWalletConnection();
   }, []);
 
 
   const [liveAccount, setLiveAccount] = useState();
-  
   const [message, setMessage] = useState();
-
   const [name, setName] = useState();
-
   const [allCakes, setAllCakes] = useState();
-
-  const buyCake = async () => {
-    try {
-      const { ethereum } = window;
-      if(ethereum) {
-        
-      }
-    } catch(error) {
-
-    }
-  }
-
   
   return (
     <div className={styles.container}>
@@ -43,7 +27,9 @@ export default function Home() {
         <h1 className={styles.title}>
           Welcome to <a>Cake Board</a>
         </h1>
-        <button class="btn btn-primary">Connect Wallet</button>
+        <button className="btn btn-primary" onClick={ connectWallet }>Connect Wallet</button>
+        <button className='btn btn-success' onClick={ buyCake }>Buy Cake</button>
+        <button className='btn btn-danger' onClick={ getCakes }>Get Cakes</button>
       </main>
 
       <footer className={styles.footer}>
